@@ -1,0 +1,16 @@
+Для получения токена:
+curl --location --request POST 'http://127.0.0.1/get-token' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"john",
+    "password":"password"
+}'
+
+Для получения/записи сообщений
+curl --location --request POST 'http://127.0.0.1/send-message' \
+--header 'Authorization: Bearer_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImV4cCI6MTY2MjMwMzU5MX0.MauTzgxDQYmQ5VIts63emiNuZwaZM8DeMDI57DpkFPk' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "john",
+    "message": "history 10"
+}'
