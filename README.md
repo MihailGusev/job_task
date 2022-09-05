@@ -1,7 +1,7 @@
 # Тестовое задание для ООО "Инсайд"
 
 При реализации использован **FastAPI** в качестве веб-фреймворка и **SQLite** в качестве БД.
-Дополнительно: SQLAlchemy и (passlib + python-jose) для формирования JWT-токенов.
+Дополнительно: SQLAlchemy, Pytest и (passlib + python-jose) для формирования JWT-токенов.
 
 DockerHub: https://hub.docker.com/repository/docker/mikhail256/job_task
 GitHub: https://github.com/MihailGusev/job_task
@@ -10,7 +10,7 @@ GitHub: https://github.com/MihailGusev/job_task
 
 ## Эндпоинты
 
-### - /get-token
+### /get-token
 
 отвечает за создание и возвращение JWT токена в случае, если в базе присутствует пользователь, переданный в теле запроса (время жизни токена 30 минут).
 
@@ -23,7 +23,7 @@ GitHub: https://github.com/MihailGusev/job_task
 }
 ```
 
-### - /send-message
+### /send-message
 
 отвечает за чтение существующих и запись новых сообщений в базу
 Изначально сообщения в базе отсутствуют.
@@ -35,12 +35,14 @@ GitHub: https://github.com/MihailGusev/job_task
 1. Через докер:
    - загрузить образ командой `docker pull mikhail256/job_task`
    - запустить контейнер `docker run -d --name job_task_container -p 80:80 mikhail256/job_task`
+   - тестирование: при запущенном контейнере выполнить `docker exec job_task_container pytest`
 2. Через питон:
    - склонировать репозиторий командой `git clone https://github.com/MihailGusev/job_task.git`
-   - внутри папки с репозиторием создать виртуальную среду `python -m venv .venv`
+   - внутри созданной директории job_task создать виртуальную среду `python -m venv .venv`
    - активировать её `.venv\Scripts\activate`
    - установить необходимые зависимости `pip install -r requirements.txt`
    - запустить приложение `uvicorn src.main:app --reload`
+   - тестирование: выполнить `pytest`
 
 Приложение будет запущено по адресу http://127.0.0.1/, но в первом случае на порту 80, а во втором на порту 8000.
 По адресу http://127.0.0.1/docs можно посмотреть эндпоинты и данные, с которыми они работают.
